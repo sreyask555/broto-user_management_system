@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= locals.title ? title : 'Brocamp Login' %>
+  </title>
+  <!-- Bootstrap-CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Root-CSS -->
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <!-- Incorrect Credentials -->
+  <% if(locals.unauth){ %>
+    <script>window.alert('Incorrect Credentials, Please enter carefully !')</script>
+  <% } %>
+    <!-- Duplicate Credentials -->
+  <% if(locals.duplicate){ %>
+    <script>window.alert('User already exists ! Please Login')</script>
+  <% } %>
+  <!-- SignUp Success -->
+  <% if(locals.signed){%>
+    <script>window.alert('Welcome you are successfully registered. Kindly login to continue')</script>
+  <%} %>
+
+  <div class="col-lg-6 container mt-5 pb-3 border rounded-5 shadow">
+    <form action="/userhome" method="POST">
+      <div class="d-flex flex-column align-items-center text-center">
+        <img class="img-fluid w-25 mt-5 mb-4" src="/img/brocamp.png" alt="">
+
+        <h2 class="mb-3">Sign in with Brocamp ID</h2>
+
+        <div class="col-lg-8 form-floating mb-4">
+          <input name="email" type="email" class="form-control border rounded-3" id="emailInput"
+            placeholder="name@example.com" required>
+          <label for="emailInput">Email Address</label>
+        </div>
+
+        <div class="col-lg-8 form-floating mb-4">
+          <input name="password" type="password" class="form-control border rounded-3" id="passwordInput"
+            placeholder="Password" required>
+          <label for="passwordInput">Password</label>
+        </div>
+
+        <button class="col-lg-6 btn btn-primary mb-3" type="submit">Sign In</button>
+        <a href="/signup"><h6 class="mb-3">New User ? Register here</h6></a>
+        <a href="/adminlogin"><button type="button" class="btn btn-success">Admin Login</button></a>
+
+      </div>
+    </form>
+  </div>
+
+  <!-- Login-JS -->
+  <script src="/js/login.js"></script>
+  <!-- confirm resubmission error -->
+  <script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+  <!-- Bootstrap-JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= locals.title ? title : 'Brocamp Login' %>
+  </title>
+  <!-- Bootstrap-CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Root-CSS -->
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hi, <%= loadPerUserData.username ? loadPerUserData.username : loadPerUserData.useremail %></h1>
+        <h2>Welcome to your Brocamp Dashboard</h2>
+
+        <a href="/logout"><button type="button" class="btn btn-danger">Log Out</button></a>
+
+            <% if(!(loadPerUserData.userbroid && loadPerUserData.userbatch)){%>
+              <h3 class="mt-5 text-danger">Sorry, your Brocamp data is not found, Please contact your Administrator !</h3>
+              <%}
+              else{%>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Brocamp ID</th>
+                      <th scope="col">Batch</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                    <tr>
+                      <td scope="row"><%= loadPerUserData.username %></td>
+                      <td><%= loadPerUserData.useremail %></td>
+                      <td><%= loadPerUserData.userbroid %></td>
+                      <td><%= loadPerUserData.userbatch %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              <%}
+            %>
+    </div>
+  <!-- Login-JS -->
+  <script src="/js/dashboard.js"></script>
+  <!-- Bootstrap-JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
